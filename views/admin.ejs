@@ -1,0 +1,48 @@
+<%- include('header') -%>
+
+<div class="header">
+    <a class="header__link" href="/">Atvinnuumsókn</a>
+    <a class="header__link" href="/applications">Umsóknir</a>
+    <a class="header__link selected" href="/admin">Notendur</a>
+    <div class="logout">
+      <p><%= displayName %></p>
+      <a href="/logout">Útskrá</a>
+    </div>
+  </div>
+
+<h1>Notendur</h1>
+
+<form method="post" action="/admin">
+  <% if (userList.length === 0) { %>
+    <p>Engir notendur</p>
+  <% } else { %>
+    <table>
+      <tr>
+        <% if (isAdmin) { %> 
+          <th>Stjórnandi?</th> 
+        <% } %>
+        <th>Notendanafn</th>
+        <th>Nafn</th>
+        <th>Netfang</th>
+      </tr>
+      <% userList.forEach((user) => { %>
+        <tr>
+        <% if (isAdmin) { %> 
+          <td><input type="checkbox" name="id" value="<%= user.id %>" <% if(user.admin){%> checked="checked" <%}%>></td> 
+        <% } %>
+        <td><%= user.username %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+                
+      </tr>
+      <% }); %>
+  </table>
+  <% } %>
+
+<% if (isAdmin) { %>
+  <button type="submit">Uppfæra stjórnendur</button>
+</form>
+<% } %>
+
+
+<%- include('footer') -%>

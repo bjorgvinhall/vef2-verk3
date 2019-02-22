@@ -1,0 +1,61 @@
+<%- include('header') -%>
+
+<%if (isLoggedIn) { %>
+  <div class="header">
+    <a class="header__link" href="/">Atvinnuumsókn</a>
+    <a class="header__link selected" href="/applications">Umsóknir</a>
+    <a class="header__link" href="/admin">Notendur</a>
+    <div class="logout">
+      <p><%= displayName %></p>
+      <a href="/logout">Útskrá</a>
+    </div>
+  </div>
+<% } else { %>
+<div class="header">
+  <a class="header__link" href="/">Atvinnuumsókn</a>
+  <a class="header__link" href="/login">Innskráning</a>
+  <a class="header__link" href="/register">Nýskráning</a>
+</div>
+<% } %>
+
+<h1>Atvinnuumsóknir</h1>
+
+<div class="applications">
+  <% if (list.length === 0) { %>
+    <p>Engar umsóknir.</p>
+  <% } %>
+
+  <% list.forEach((application) => { %>
+    <div class="application">
+      <h2><%= application.name %></h2>
+      <p><a href="mailto:<%= application.email %>"><%= application.email %></a></p>
+      <p>Sími: <%= application.phone %></p>
+      <p>Umsókn send: <%= application.created.toISOString() %></p>
+      <p class="text"><%= application.text %></p>
+
+      <div class="actions">
+        <div class="process">
+          <% if (application.processed) { %>
+            ✓ Umsókn unnin <%= application.updated.toISOString() %>
+          <% } else { %>
+            <form method="post" action="/applications/process">
+              <input type="hidden" name="id" value="<%= application.id %>">
+              <button>Vinna umsókn</button>
+            </form>
+          <% } %>
+        </div>
+        <div class="delete">
+          <% if (isAdmin) { %>
+          <form method="post" action="/applications/delete">
+            <input type="hidden" name="id" value="<%= application.id %>">
+            <button>Eyða umsókn</button>
+          </form>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  <% }); %>
+</div>
+
+
+<%- include('footer') -%>

@@ -1,0 +1,24 @@
+<%- include('header') -%>
+
+<div class="header">
+  <a class="header__link" href="/">Atvinnuumsókn</a>
+  <a class="header__link selected" href="/login">Innskráning</a>
+  <a class="header__link" href="/register">Nýskráning</a>
+</div>
+
+<h1>Innskráning</h1>
+
+<form method="post" action="/login">
+  <div class="field">
+    <label>Notendanafn:</label>
+    <input type="text" name="username">
+  </div>
+  <div class="field">
+    <label>Lykilorð:</label>
+    <input type="password" name="password">
+  </div>
+  <h3 class="errormsg"><%= message %></h3>
+  <button>Innskrá</button>
+</form>
+
+<%- include('footer') -%>
