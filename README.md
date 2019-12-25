@@ -2,6 +2,12 @@
 
 Verkefni 3 byggir á [verkefni 2](https://github.com/vefforritun/vef2-2019-v2) og bætir við notendaumsjón með nýskráningu og meðhöndlun á notendum.
 
+## Verkefnið keyrandi á vefnum
+Hér er hægt að skoða verkefnið mitt, það tekur smá stund fyrir verkefnið að byrja að keyra eftir að þið opnið linkinn
+
+* https://bjorgvin-v3.herokuapp.com/
+
+
 ## Útlit
 
 Útlit fyrir viðbætur er gefið í möppu `utlit/`, bæði fyrir `1200px` breiðan skjá og `400px` breiðan. Útlit fylgir [sömu forskrift og í verkefni 2](https://github.com/vefforritun/vef2-2019-v2#%C3%BAtlit).
